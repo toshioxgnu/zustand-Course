@@ -1,4 +1,5 @@
 import { create } from "zustand";
+import { persist } from "zustand/middleware";
 
 
 
@@ -13,11 +14,20 @@ interface Actions {
 }
 
 
-export const usePersonStore = create< PersonState & Actions >()( (set) => ({
-    firstName: '',
-    lastName: '',
-
-    setFirstName: (value: string) => set( state => ({ firstName: value }) ),
-    setLastName: (value: string) => set( state => ({ lastName: value }) ),
+export const usePersonStore = create< PersonState & Actions >()(
     
-}));
+    persist(
+        (set) => ({
+            firstName: '',
+            lastName: '',
+
+            setFirstName: (value: string) => set( state => ({ firstName: value }) ),
+            setLastName: (value: string) => set( state => ({ lastName: value }) ),
+        
+        }), {
+            name: 'person-store',
+        }
+    
+    )
+
+);
