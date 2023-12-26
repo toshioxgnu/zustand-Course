@@ -1,6 +1,8 @@
 import { type StateCreator, create } from "zustand";
 import {  persist } from "zustand/middleware";
-import { customSessionStorage } from "../storages/session-storage.storage";
+// import { customSessionStorage } from "../storages/session.storage";
+import { firebaseStorage } from "../storages/firebase-storage.storage";
+
 
 
 
@@ -33,7 +35,7 @@ export const usePersonStore = create< PersonState & Actions >()(
         storeApi , 
         {
             name: 'person-store',
-            storage: customSessionStorage,
+            storage: firebaseStorage,
         }
     
     )
