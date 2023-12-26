@@ -15,12 +15,11 @@ const firebaseApi: StateStorage = {
         return data;
     },
     setItem: async function (name: string, value: string): Promise<void> {
-        const data = await fetch(`${firebaseUrl}/${name}.json`,{
+        await fetch(`${firebaseUrl}/${name}.json`,{
             method: 'PUT',
             body: value
         })
         .then( response => response.json() );
-        console.log(data)
     },
     removeItem: function (name: string): void | Promise<void> {
         console.log('removeItem', name)
